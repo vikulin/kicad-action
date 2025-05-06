@@ -51,9 +51,16 @@ fi
 if [[ -n $INPUT_KICAD_PCB ]] && [[ $INPUT_PCB_GERBERS = "true" ]]
 then
   GERBERS_DIR=`mktemp -d`
-  kicad-cli pcb export gerbers \
-    --output "$GERBERS_DIR/" \
-    "$INPUT_KICAD_PCB"
+  if [[ -n $INPUT_PCB_GERBERS_LAYERS ]]; then
+    kicad-cli pcb export gerbers \
+      --layers "$INPUT_PCB_GERBERS_LAYERS" \
+      --output "$GERBERS_DIR/" \
+      "$INPUT_KICAD_PCB"
+  else
+    kicad-cli pcb export gerbers \
+      --output "$GERBERS_DIR/" \
+      "$INPUT_KICAD_PCB"
+  fi
   kicad-cli pcb export drill \
     --output "$GERBERS_DIR/" \
     "$INPUT_KICAD_PCB"
@@ -61,6 +68,7 @@ then
     "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_GERBERS_FILE" \
     "$GERBERS_DIR"/*
 fi
+
 
 if [[ -n $INPUT_KICAD_PCB ]] && [[ $INPUT_PCB_IMAGE = "true" ]]
 then

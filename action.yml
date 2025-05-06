@@ -46,6 +46,9 @@ inputs:
   pcb_gerbers_file:
     description: 'Output filename of Gerbers ZIP'
     default: 'gbr.zip'
+  pcb_gerbers_layers:
+    description: 'Output layers to generate from PCB'
+    default: ''
   pcb_image:
     description: 'Whether to render the PCB image'
     default: false
