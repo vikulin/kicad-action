@@ -113,7 +113,7 @@ See this example working in the action runs of this repository.
 - [ ] Add support for more configuration options, e.g. BOM format
 - [ ] Add a way to specify KiCad version to use
 - [ ] Better detect if steps of this action fail
-- [ ] Find a better way to enforce the default output files extensions depending on the format requesed
+- [ ] Find a better way to enforce the default output files extensions depending on the format requested
 
 ## Contributing
 
