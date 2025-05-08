@@ -14,6 +14,7 @@ then
   kicad-cli sch erc \
     --output "`dirname $INPUT_KICAD_SCH`/$INPUT_SCH_ERC_FILE" \
     --format $INPUT_REPORT_FORMAT \
+    --severity-error \
     --exit-code-violations \
     "$INPUT_KICAD_SCH"
   erc_violation=$?
@@ -42,6 +43,7 @@ then
   kicad-cli pcb drc \
     --output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_DRC_FILE" \
     --format $INPUT_REPORT_FORMAT \
+    --severity-error \
     --exit-code-violations \
     "$INPUT_KICAD_PCB"
   drc_violation=$?
