@@ -82,7 +82,6 @@ jobs:
 See this example working in the action runs of this repository.
 
 ## Configuration
-
 | Option               | Description                                                      | Default                      |
 |----------------------|------------------------------------------------------------------|------------------------------|
 | `kicad_sch`          | Path to the `.kicad_sch` file                                    |                              |
@@ -102,6 +101,9 @@ See this example working in the action runs of this repository.
 | `pcb_gerbers_file`   | Output filename for the Gerber archive                           | `gbr.zip`                    |
 | `pcb_gerbers_layers` | Comma-separated list of PCB layers to include in Gerber output:  |                              |
 |                      | `F.Cu,B.Cu,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts`              |                              |
+| `pcb_centroids`      | Whether to generate centroid (component placement) files from PCB| `false`                      |
+| `pcb_centroids_file` | Output filename of centroid (component placement)                | `cnt.pos`                    |
+| `pcb_centroids_format`| Output format to generate centroid files from PCB               | `ascii`                      |
 | `pcb_image`          | Whether to render top and bottom PCB images                      | `false`                      |
 | `pcb_image_path`     | Output directory for `top.png` and `bottom.png`                  | `images`                     |
 | `pcb_model`          | Whether to export a 3D model of the PCB                          | `false`                      |
