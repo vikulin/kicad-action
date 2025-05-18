@@ -71,6 +71,16 @@ then
     "$GERBERS_DIR"/*
 fi
 
+# Export centroid (placement) file if requested
+if [[ -n "$INPUT_KICAD_PCB" && "$INPUT_PCB_CENTROIDS" == "true" ]]
+then
+  echo "Exporting centroid (placement) file to $INPUT_PCB_CENTROIDS_FILE..."
+  kicad-cli pcb export pos \
+    --format "$INPUT_PCB_CENTROIDS_FORMAT" \
+    --output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_CENTROIDS_FILE" \
+    --units mm \
+    "$INPUT_KICAD_PCB"
+fi
 
 if [[ -n $INPUT_KICAD_PCB ]] && [[ $INPUT_PCB_IMAGE = "true" ]]
 then
