@@ -82,15 +82,54 @@ then
     "$INPUT_KICAD_PCB"
 fi
 
-if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_IMAGE_PATH ]]
-then
-  mkdir -p "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_IMAGE_PATH"
-  kicad-cli pcb render --side top \
-    --output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_IMAGE_PATH/top.png" \
-    "$INPUT_KICAD_PCB"
-  kicad-cli pcb render --side bottom \
-    --output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_IMAGE_PATH/bottom.png" \
-    "$INPUT_KICAD_PCB"
+if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_TOP_IMAGE_FILE ]]; then
+  mkdir -p "`dirname $INPUT_KICAD_PCB`/`dirname $INPUT_PCB_TOP_IMAGE_FILE`"
+  
+  CMD_TOP=(kicad-cli pcb render --side top)
+  CMD_TOP+=(--output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_TOP_IMAGE_FILE")
+  
+  if [[ -n $INPUT_PCB_TOP_IMAGE_ZOOM ]]; then
+    CMD_TOP+=(--zoom "$INPUT_PCB_TOP_IMAGE_ZOOM")
+  fi
+  
+  if [[ -n $INPUT_PCB_TOP_IMAGE_WIDTH ]]; then
+    CMD_TOP+=(--width "$INPUT_PCB_TOP_IMAGE_WIDTH")
+  fi
+
+  if [[ -n $INPUT_PCB_TOP_IMAGE_HEIGHT ]]; then
+    CMD_TOP+=(--height "$INPUT_PCB_TOP_IMAGE_HEIGHT")
+  fi
+  
+  if [[ -n $INPUT_PCB_TOP_IMAGE_QUALITY ]]; then
+    CMD_TOP+=(--quality "$INPUT_PCB_TOP_IMAGE_QUALITY")
+  fi
+  
+  "${CMD_TOP[@]}" "$INPUT_KICAD_PCB"
+fi
+
+if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_BOTTOM_IMAGE_FILE ]]; then
+  mkdir -p "`dirname $INPUT_KICAD_PCB`/`dirname $INPUT_PCB_BOTTOM_IMAGE_FILE`"
+  
+  CMD_BOTTOM=(kicad-cli pcb render --side bottom)
+  CMD_BOTTOM+=(--output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_BOTTOM_IMAGE_FILE")
+  
+  if [[ -n $INPUT_PCB_BOTTOM_IMAGE_ZOOM ]]; then
+    CMD_BOTTOM+=(--zoom "$INPUT_PCB_BOTTOM_IMAGE_ZOOM")
+  fi
+  
+  if [[ -n $INPUT_PCB_BOTTOM_IMAGE_WIDTH ]]; then
+    CMD_BOTTOM+=(--width "$INPUT_PCB_BOTTOM_IMAGE_WIDTH")
+  fi
+
+  if [[ -n $INPUT_PCB_BOTTOM_IMAGE_HEIGHT ]]; then
+    CMD_BOTTOM+=(--height "$INPUT_PCB_BOTTOM_IMAGE_HEIGHT")
+  fi
+
+  if [[ -n $INPUT_PCB_BOTTOM_IMAGE_QUALITY ]]; then
+    CMD_BOTTOM+=(--quality "$INPUT_PCB_BOTTOM_IMAGE_QUALITY")
+  fi
+
+  "${CMD_BOTTOM[@]}" "$INPUT_KICAD_PCB"
 fi
 
 if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_MODEL_FILE ]]

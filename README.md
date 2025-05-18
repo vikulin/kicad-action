@@ -1,7 +1,7 @@
 # kicad-action
 
 GitHub Action to automate KiCad tasks, e.g. check ERC/DRC on pull requests or
-generate production files for releases.
+generate production files for releases. Having a lot of improvements this is an upgraded version of [sparkengineering/kicad-action](sparkengineering/kicad-action).
 
 ## Features
 
@@ -82,24 +82,33 @@ jobs:
 See this example working in the action runs of this repository.
 
 ## Configuration
-| Option               | Description                                                      | Default                      |
-|----------------------|------------------------------------------------------------------|------------------------------|
-| `kicad_sch`          | Path to the `.kicad_sch` file                                    |                              |
-| `sch_erc_file`       | Output filename for the ERC report                               |                              |
-| `sch_pdf_file`       | Output filename for the schematic PDF                            |                              |
-| `sch_bom_file`       | Output filename for the BOM                                      |                              |
-| `sch_bom_preset`     | Name of a BOM preset to use                                      |                              |
-| `report_format`      | Format for ERC/DRC reports (`json` or `report`)                  | `report`                     |
-| `kicad_pcb`          | Path to the `.kicad_pcb` file                                    |                              |
-| `pcb_drc_file`       | Output filename for the DRC report                               |                              |
-| `pcb_gerbers_file`   | Output filename for the Gerber archive                           |                              |
-| `pcb_gerbers_layers` | Comma-separated list of PCB layers to include in Gerber output:  |                              |
-|                      | `F.Cu,B.Cu,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts`              |                              |
-| `pcb_centroids_file` | Output filename of centroid (component placement)                |                              |
-| `pcb_centroids_format`| Output format to generate centroid files from PCB               | `ascii`                      |
-| `pcb_image_path`     | Output directory for `top.png` and `bottom.png`                  |                              |
-| `pcb_model_file`     | Output filename for the 3D model                                 |                              |
-| `pcb_model_flags`    | Additional flags to use when exporting the STEP model            | See [action.yml](action.yml) |
+| Option                      | Description                                                      | Default                      |
+|-----------------------------|------------------------------------------------------------------|------------------------------|
+| `kicad_sch`                 | Path to the `.kicad_sch` file                                    |                              |
+| `sch_erc_file`              | Output filename for the ERC report                               |                              |
+| `sch_pdf_file`              | Output filename for the schematic PDF                            |                              |
+| `sch_bom_file`              | Output filename for the BOM                                      |                              |
+| `sch_bom_preset`            | Name of a BOM preset to use                                      |                              |
+| `report_format`             | Format for ERC/DRC reports (`json` or `report`)                  | `report`                     |
+| `kicad_pcb`                 | Path to the `.kicad_pcb` file                                    |                              |
+| `pcb_drc_file`              | Output filename for the DRC report                               |                              |
+| `pcb_gerbers_file`          | Output filename for the Gerber archive                           |                              |
+| `pcb_gerbers_layers`        | Comma-separated list of PCB layers to include in Gerber output:  |                              |
+|                             | `F.Cu,B.Cu,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts`              |                              |
+| `pcb_centroids_file`        | Output filename of centroid (component placement)                |                              |
+| `pcb_centroids_format`      | Output format to generate centroid files from PCB                | `ascii`                      |
+| `pcb_top_image_file`        | Ouput filename for PCB top view                                  |                              |
+| `pcb_top_image_zoom`        | Ouput zoom for PCB top view (e.g. 1.8)                           |                              |
+| `pcb_top_image_width`       | Ouput image file width for PCB top view                          |                              |
+| `pcb_top_image_height`      | Ouput image file height for PCB top view                         |                              |
+| `pcb_top_image_quality`     | Render quality. Options: basic, high, user [nargs=0..1]          |                              |
+| `pcb_bottom_image_file`     | Ouput filename for PCB bottom view                               |                              |
+| `pcb_bottom_image_zoom`     | Ouput zoom for PCB bottom view (e.g. 1.8)                        |                              |
+| `pcb_bottom_image_width`    | Ouput image file width for PCB bottom view                       |                              |
+| `pcb_bottom_image_height`   | Ouput image file height for PCB bottom view                      |                              |
+| `pcb_bottom_image_quality`  | Render quality. Options: basic, high, user [nargs=0..1]          |                              |
+| `pcb_model_file`            | Output filename for the 3D model                                 |                              |
+| `pcb_model_flags`           | Additional flags to use when exporting the STEP model            | See [action.yml](action.yml) |
 
 ## Roadmap
 

@@ -32,8 +32,26 @@ inputs:
   pcb_centroids_format:
     description: 'Output format to generate centroid (component placement) files from PCB'
     default: 'ascii'
-  pcb_image_path:
-    description: 'Where to put the top.png and bottom.png'
+  pcb_top_image_file:
+    description: 'Ouput filename for PCB top view'
+  pcb_top_image_zoom:
+    description: 'Ouput zoom for PCB top view'
+  pcb_top_image_quality:
+    description: 'Ouput image file render quality. Options: basic, high, user [nargs=0..1]'
+  pcb_top_image_width:
+    description: 'Ouput image file width for PCB top view'
+  pcb_top_image_height:
+    description: 'Ouput image file height for PCB top view'
+  pcb_bottom_image_file:
+    description: 'Ouput filename for PCB bottom view'
+  pcb_bottom_image_zoom:
+    description: 'Ouput zoom for PCB bottom view'
+  pcb_bottom_image_width:
+    description: 'Ouput image file width for PCB bottom view'
+  pcb_bottom_image_height:
+    description: 'Ouput image file height for PCB top view'
+  pcb_bottom_image_quality:
+    description: 'Ouput image file render quality. Options: basic, high, user [nargs=0..1]'
   pcb_model_file:
     description: 'Output filename of PCB model'
   pcb_model_flags:
