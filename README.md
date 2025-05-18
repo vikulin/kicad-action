@@ -30,10 +30,10 @@ jobs:
         if: '!cancelled()'
         with:
           kicad_sch: my-project.kicad_sch
-          sch_pdf: true # Generate PDF
-          sch_bom: true # Generate BOM
+          sch_pdf_file: sch.pdf # Generate PDF
+          sch_bom_file: bom.csv # Generate BOM
           kicad_pcb: my-project.kicad_pcb
-          pcb_gerbers: true # Generate Gerbers
+          pcb_gerbers_file: gbr.zip # Generate Gerbers
 
       # Upload production files only if generation succeeded
       - name: Upload production files
@@ -52,7 +52,7 @@ jobs:
         if: '!cancelled()'
         with:
           kicad_sch: my-project.kicad_sch
-          sch_erc: true
+          sch_erc: erc.rpt
 
       - name: Run KiCad DRC
         id: drc
@@ -60,7 +60,7 @@ jobs:
         if: '!cancelled()'
         with:
           kicad_pcb: my-project.kicad_pcb
-          pcb_drc: true
+          pcb_drc_file: drc.rpt
 
       # Upload ERC report only if ERC failed
       - name: Upload ERC report
@@ -85,29 +85,20 @@ See this example working in the action runs of this repository.
 | Option               | Description                                                      | Default                      |
 |----------------------|------------------------------------------------------------------|------------------------------|
 | `kicad_sch`          | Path to the `.kicad_sch` file                                    |                              |
-| `sch_erc`            | Whether to run ERC (Electrical Rules Check) on the schematic     | `false`                      |
-| `sch_erc_file`       | Output filename for the ERC report                               | `erc.rpt`                    |
-| `sch_pdf`            | Whether to generate a PDF from the schematic                     | `false`                      |
-| `sch_pdf_file`       | Output filename for the schematic PDF                            | `sch.pdf`                    |
-| `sch_bom`            | Whether to generate a BOM (Bill of Materials) from the schematic | `false`                      |
-| `sch_bom_file`       | Output filename for the BOM                                      | `bom.csv`                    |
+| `sch_erc_file`       | Output filename for the ERC report                               |                              |
+| `sch_pdf_file`       | Output filename for the schematic PDF                            |                              |
+| `sch_bom_file`       | Output filename for the BOM                                      |                              |
 | `sch_bom_preset`     | Name of a BOM preset to use                                      |                              |
 | `report_format`      | Format for ERC/DRC reports (`json` or `report`)                  | `report`                     |
-|                      |                                                                  |                              |
 | `kicad_pcb`          | Path to the `.kicad_pcb` file                                    |                              |
-| `pcb_drc`            | Whether to run DRC (Design Rules Check) on the PCB               | `false`                      |
-| `pcb_drc_file`       | Output filename for the DRC report                               | `drc.rpt`                    |
-| `pcb_gerbers`        | Whether to generate Gerber files from the PCB                    | `false`                      |
-| `pcb_gerbers_file`   | Output filename for the Gerber archive                           | `gbr.zip`                    |
+| `pcb_drc_file`       | Output filename for the DRC report                               |                              |
+| `pcb_gerbers_file`   | Output filename for the Gerber archive                           |                              |
 | `pcb_gerbers_layers` | Comma-separated list of PCB layers to include in Gerber output:  |                              |
 |                      | `F.Cu,B.Cu,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts`              |                              |
-| `pcb_centroids`      | Whether to generate centroid (component placement) files from PCB| `false`                      |
-| `pcb_centroids_file` | Output filename of centroid (component placement)                | `cnt.pos`                    |
+| `pcb_centroids_file` | Output filename of centroid (component placement)                |                              |
 | `pcb_centroids_format`| Output format to generate centroid files from PCB               | `ascii`                      |
-| `pcb_image`          | Whether to render top and bottom PCB images                      | `false`                      |
-| `pcb_image_path`     | Output directory for `top.png` and `bottom.png`                  | `images`                     |
-| `pcb_model`          | Whether to export a 3D model of the PCB                          | `false`                      |
-| `pcb_model_file`     | Output filename for the 3D model                                 | `pcb.step`                   |
+| `pcb_image_path`     | Output directory for `top.png` and `bottom.png`                  |                              |
+| `pcb_model_file`     | Output filename for the 3D model                                 |                              |
 | `pcb_model_flags`    | Additional flags to use when exporting the STEP model            | See [action.yml](action.yml) |
 
 ## Roadmap

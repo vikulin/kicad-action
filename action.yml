@@ -4,27 +4,14 @@ description: 'Automate KiCad tasks, e.g. check ERC/DRC on pull requests or gener
 inputs:
   kicad_sch:
     description: 'Path to .kicad_sch file'
-  sch_erc:
-    description: 'Whether to run ERC on the schematic'
-    default: false
   sch_erc_file:
     description: 'Output filename of ERC report'
-    default: 'erc.rpt'
-  sch_pdf:
-    description: 'Whether to generate PDF from schematic'
-    default: false
   sch_pdf_file:
     description: 'Output filename of PDF schematic'
-    default: 'sch.pdf'
-  sch_bom:
-    description: 'Whether to generate BOM from schematic'
-    default: false
   sch_bom_file:
     description: 'Output filename of BOM'
-    default: 'bom.csv'
   sch_bom_preset:
     description: 'Name of a BOM preset setting to use'
-    default: ''
   report_format:
     description: 'ERC and DRC report files format'
     type: choice
@@ -34,42 +21,21 @@ inputs:
     default: 'report'
   kicad_pcb:
     description: 'Path to .kicad_pcb file'
-  pcb_drc:
-    description: 'Whether to run DRC on the PCB'
-    default: false
   pcb_drc_file:
     description: 'Output filename for DRC report'
-    default: 'drc.rpt'
-  pcb_gerbers:
-    description: 'Whether to generate Gerbers from PCB'
-    default: false
   pcb_gerbers_file:
     description: 'Output filename of Gerbers ZIP'
-    default: 'gbr.zip'
   pcb_gerbers_layers:
     description: 'Output layers to generate from PCB'
-    default: ''
-  pcb_centroids:
-    description: 'Whether to generate centroid (component placement) files from PCB'
-    default: false
   pcb_centroids_file:
     description: 'Output filename of centroid (component placement)'
-    default: 'cnt.pos'
   pcb_centroids_format:
     description: 'Output format to generate centroid (component placement) files from PCB'
     default: 'ascii'
-  pcb_image:
-    description: 'Whether to render the PCB image'
-    default: false
   pcb_image_path:
     description: 'Where to put the top.png and bottom.png'
-    default: 'images'
-  pcb_model:
-    description: 'Whether to export the PCB model'
-    default: false
   pcb_model_file:
     description: 'Output filename of PCB model'
-    default: 'pcb.step'
   pcb_model_flags:
     description: 'Flags to add when exporting STEP files'
     default: '--no-unspecified --no-dnp --include-tracks  --include-pads  --include-zones'

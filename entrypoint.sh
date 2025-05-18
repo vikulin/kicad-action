@@ -9,7 +9,7 @@ erc_violation=0 # ERC exit code
 drc_violation=0 # DRC exit code
 
 # Run ERC if requested
-if [[ -n $INPUT_KICAD_SCH ]] && [[ $INPUT_SCH_ERC = "true" ]]
+if [[ -n $INPUT_KICAD_SCH ]] && [[ -n $INPUT_SCH_ERC_FILE ]]
 then
   kicad-cli sch erc \
     --output "`dirname $INPUT_KICAD_SCH`/$INPUT_SCH_ERC_FILE" \
@@ -21,7 +21,7 @@ then
 fi
 
 # Export schematic PDF if requested
-if [[ -n $INPUT_KICAD_SCH ]] && [[ $INPUT_SCH_PDF = "true" ]]
+if [[ -n $INPUT_KICAD_SCH ]] && [[ -n $INPUT_SCH_PDF_FILE ]]
 then
   kicad-cli sch export pdf \
     --output "`dirname $INPUT_KICAD_SCH`/$INPUT_SCH_PDF_FILE" \
@@ -29,7 +29,7 @@ then
 fi
 
 # Export schematic BOM if requested
-if [[ -n $INPUT_KICAD_SCH ]] && [[ $INPUT_SCH_BOM = "true" ]]
+if [[ -n $INPUT_KICAD_SCH ]] && [[ -n $INPUT_SCH_BOM_FILE ]]
 then
   kicad-cli sch export bom \
     --output "`dirname $INPUT_KICAD_SCH`/$INPUT_SCH_BOM_FILE" \
@@ -38,7 +38,7 @@ then
 fi
 
 # Run DRC if requested
-if [[ -n $INPUT_KICAD_PCB ]] && [[ $INPUT_PCB_DRC = "true" ]]
+if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_DRC_FILE ]]
 then
   kicad-cli pcb drc \
     --output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_DRC_FILE" \
@@ -50,7 +50,7 @@ then
 fi
 
 # Export Gerbers if requested
-if [[ -n $INPUT_KICAD_PCB ]] && [[ $INPUT_PCB_GERBERS = "true" ]]
+if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_GERBERS_FILE ]]
 then
   GERBERS_DIR=`mktemp -d`
   if [[ -n $INPUT_PCB_GERBERS_LAYERS ]]; then
@@ -72,7 +72,7 @@ then
 fi
 
 # Export centroid (placement) file if requested
-if [[ -n "$INPUT_KICAD_PCB" && "$INPUT_PCB_CENTROIDS" == "true" ]]
+if [[ -n "$INPUT_KICAD_PCB" ]] && [[ -n "$INPUT_PCB_CENTROIDS_FILE" ]]
 then
   echo "Exporting centroid (placement) file to $INPUT_PCB_CENTROIDS_FILE..."
   kicad-cli pcb export pos \
@@ -82,7 +82,7 @@ then
     "$INPUT_KICAD_PCB"
 fi
 
-if [[ -n $INPUT_KICAD_PCB ]] && [[ $INPUT_PCB_IMAGE = "true" ]]
+if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_IMAGE_PATH ]]
 then
   mkdir -p "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_IMAGE_PATH"
   kicad-cli pcb render --side top \
@@ -93,7 +93,7 @@ then
     "$INPUT_KICAD_PCB"
 fi
 
-if [[ -n $INPUT_KICAD_PCB ]] && [[ $INPUT_PCB_MODEL = "true" ]]
+if [[ -n $INPUT_KICAD_PCB ]] && [[ -n $INPUT_PCB_MODEL_FILE ]]
 then
   kicad-cli pcb export step $INPUT_PCB_MODEL_FLAGS \
     --output "`dirname $INPUT_KICAD_PCB`/$INPUT_PCB_MODEL_FILE" \
